@@ -15,12 +15,35 @@ const Home = () => {
   //
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
-  console.log(popular);
   return (
     <GameList>
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+          />
+        ))}
+      </Games>
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => (
           <Game
             name={game.name}
             released={game.released}
@@ -36,8 +59,11 @@ const Home = () => {
 
 const GameList = styled(motion.div)`
   padding: 0rem 5rem;
+  h2:first-of-type {
+    padding: 2rem 0 3rem;
+  }
   h2 {
-    padding: 2rem 0 4rem;
+    padding: 5rem 0 3rem;
   }
 `;
 //
