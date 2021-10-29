@@ -11,8 +11,11 @@ const GlobalStyles = createGlobalStyle`
             width: 0%.5rem;
         }
         &::-webkit-scrollbar-thumb {
-            background-color: #000;
+            background-color: darkgrey;
         }
+        &::-webkit-scrollbar-track {
+    background-color: white;
+  }
     }
     body {
         font-family: 'Abril Fatface', cursive;
