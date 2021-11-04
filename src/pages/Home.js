@@ -7,8 +7,14 @@ import GameDetails from "../components/GameDetails";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+//Location
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
+  //get current location
+  const location = useLocation();
+  const pathId = location.pathname.split("/")[2];
+  ////
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
@@ -18,7 +24,7 @@ const Home = () => {
 
   return (
     <GameList>
-      <GameDetails />
+      {pathId && <GameDetails />}
       <h2>Popular Games</h2>
       <Games>
         {popular.map((game) => (
