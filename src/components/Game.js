@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -12,17 +12,20 @@ import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
 const Game = ({ name, released, id, image }) => {
+  //ref to game
+  const game = useRef();
   //convert id to string
   const stringPathId = id.toString();
   //Load details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     document.body.style.overflow = "hidden";
+    game.current.style.visibility = "visible !important";
     dispatch(loadDetail(id));
   };
 
   return (
-    <StyledGame layoutId={stringPathId} onClick={loadDetailHandler}>
+    <StyledGame ref={game} layoutId={stringPathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
         <p>{released}</p>
@@ -43,7 +46,6 @@ const StyledGame = styled(motion.div)`
   border-radius: 1rem;
   cursor: pointer;
   overflow: hidden;
-
   img {
     width: 100%;
     height: 20vh;

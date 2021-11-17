@@ -8,6 +8,13 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 //Media resize
 import { smallImage } from "../util";
+//Images
+import playstation from "../img/playstation.svg";
+import gamepad from "../img/gamepad.svg";
+import steam from "../img/steam.svg";
+import apple from "../img/apple.svg";
+import nintendo from "../img/nintendo.svg";
+import xbox from "../img/xbox.svg";
 
 const GameDetails = ({ pathId }) => {
   const history = useHistory();
@@ -18,6 +25,22 @@ const GameDetails = ({ pathId }) => {
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
       history.push("/");
+    }
+  };
+
+  //Get platform images
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation 4":
+        return playstation;
+      case "Xbox One":
+        return xbox;
+      case "PC":
+        return steam;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
     }
   };
 
@@ -40,7 +63,11 @@ const GameDetails = ({ pathId }) => {
                   {game.platforms &&
                     game.platforms.map((data) => {
                       return (
-                        <h3 key={data.platform.id}>{data.platform.name}</h3>
+                        <img
+                          alt={data.platform.name}
+                          key={data.platform.id}
+                          src={getPlatform(data.platform.name)}
+                        />
                       );
                     })}
                 </Platforms>
@@ -85,8 +112,8 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  ///////////
   z-index: 999;
+  //
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
