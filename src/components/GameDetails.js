@@ -8,13 +8,16 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 //Media resize
 import { smallImage } from "../util";
-//Images
+//Game platform images
 import playstation from "../img/playstation.svg";
 import gamepad from "../img/gamepad.svg";
 import steam from "../img/steam.svg";
 import apple from "../img/apple.svg";
 import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";
+//Star images
+import starFull from "../img/star-full.png";
+import starEmpty from "../img/star-empty.png";
 
 const GameDetails = ({ pathId }) => {
   const history = useHistory();
@@ -43,6 +46,17 @@ const GameDetails = ({ pathId }) => {
         return gamepad;
     }
   };
+  //Star raiting
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt="star" key={i} src={starFull} />);
+      } else stars.push(<img alt="star" key={i} src={starEmpty} />);
+    }
+    return stars;
+  };
 
   //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
@@ -56,6 +70,7 @@ const GameDetails = ({ pathId }) => {
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
+                {getStars()}
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -141,6 +156,11 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    display: inline;
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 const Info = styled(motion.div)`
   text-align: center;
