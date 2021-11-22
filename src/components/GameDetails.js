@@ -13,7 +13,7 @@ import playstation from "../img/playstation.svg";
 import gamepad from "../img/gamepad.svg";
 import steam from "../img/steam.svg";
 import apple from "../img/apple.svg";
-import nintendo from "../img/nintendo.svg";
+//import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";
 //Star images
 import starFull from "../img/star-full.png";
