@@ -5,11 +5,13 @@ import { motion } from "framer-motion";
 import logo from "../img/logo.svg";
 //Redux and Routes
 import { fetchSearch } from "../actions/gamesAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Nav = () => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
+  //Data
+  const { searched } = useSelector((state) => state.games);
   //
   const inputHandler = (e) => {
     setTextInput(e.target.value);
@@ -27,6 +29,7 @@ const Nav = () => {
       <Logo onClick={clearSearch}>
         <img src={logo} alt="logo" />
         <h1>Ignite</h1>
+        {searched.length > 0 ? <TooltipText>Clear search</TooltipText> : ""}
       </Logo>
       <form className="search" onSubmit={submitSearch}>
         <input value={textInput} onChange={inputHandler} type="text" />
@@ -56,13 +59,32 @@ const StyledNav = styled(motion.div)`
     color: white;
   }
 `;
+const TooltipText = styled(motion.span)`
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  top: -20px;
+  z-index: 1;
+`;
 const Logo = styled(motion.div)`
+  position: relative;
   display: flex;
   justify-content: center;
   padding: 1rem;
   cursor: pointer;
+  &:hover {
+    ${TooltipText} {
+      visibility: visible;
+    }
+  }
   img {
     padding: 0 0.5rem;
   }
 `;
+
 export default Nav;
