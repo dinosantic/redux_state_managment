@@ -15,15 +15,19 @@ const Game = ({ name, released, id, image }) => {
   //ref to game
   const game = useRef();
   //convert id to string
-  const stringPathId = id.toString();
+  let stringPathId = id.toString();
   //Load details
   const dispatch = useDispatch();
+  /////
   const loadDetailHandler = () => {
     document.body.style.overflow = "hidden";
     game.current.style.visibility = "visible !important";
-    dispatch(loadDetail(id));
-  };
 
+    const parentEl = game.current.parentElement;
+    const gameSection = parentEl.previousElementSibling.textContent;
+
+    dispatch(loadDetail(id, gameSection));
+  };
   return (
     <StyledGame ref={game} layoutId={stringPathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>

@@ -14,15 +14,17 @@ const Home = () => {
   //get current location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
-  ////
+  //
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadGames());
-  }, [dispatch]);
   //
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
+  ///
+  useEffect(() => {
+    dispatch(loadGames());
+  }, [dispatch]);
+  //
   return (
     <GameList>
       <AnimateSharedLayout type="crossfade">
@@ -89,7 +91,7 @@ const Home = () => {
 };
 
 const GameList = styled(motion.div)`
-  padding: 0rem 5rem;
+  padding: 5rem;
   h2:first-of-type {
     padding: 2rem 0 3rem;
   }
