@@ -58,6 +58,17 @@ const StyledNav = styled(motion.div)`
     background-color: #ff7676;
     color: white;
   }
+  @media (max-width: 767px) {
+    padding: 1rem;
+    input {
+      width: 50%;
+      font-size: 1rem;
+    }
+    button {
+      font-size: 1.25rem;
+      padding: 0.5rem 1rem;
+    }
+  }
 `;
 const TooltipText = styled(motion.span)`
   visibility: hidden;

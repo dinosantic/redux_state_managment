@@ -229,11 +229,15 @@ const Detail = styled(motion.div)`
   background-color: #fff;
   position: absolute;
   top: 5%;
-  left: 10%;
+  left: 5%;
   color: #000;
   opacity: 1 !important;
   img {
     width: 100%;
+  }
+  @media (max-width: 767px) {
+    width: 90%;
+    padding: 1rem;
   }
 `;
 const DetailWrapper = styled(motion.div)`
@@ -282,6 +286,10 @@ const Stats = styled(motion.div)`
     display: inline;
     width: 2rem;
     height: 2rem;
+  }
+  @media (max-width: 767px) {
+    flex-direction: column;
+    text-align: center;
   }
 `;
 const Info = styled(motion.div)`
