@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Nav = () => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
+
   //Data
   const { searched } = useSelector((state) => state.games);
   //
@@ -28,7 +29,12 @@ const Nav = () => {
     <StyledNav>
       <Logo onClick={clearSearch}>
         <img src={logo} alt="logo" />
-        <h1>Ignite</h1>
+        <h1
+          style={
+            searched.length > 0 ? { color: "#ff7676" } : { color: "black" }
+          }>
+          Ignite
+        </h1>
         {searched.length > 0 ? <TooltipText>Clear search</TooltipText> : ""}
       </Logo>
       <form className="search" onSubmit={submitSearch}>
@@ -42,6 +48,9 @@ const Nav = () => {
 const StyledNav = styled(motion.div)`
   padding: 3rem 5rem;
   text-align: center;
+  h1 {
+    transition: color 0.2s ease-in-out;
+  }
   input {
     width: 30%;
     font-size: 1.5rem;

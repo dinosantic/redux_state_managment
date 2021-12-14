@@ -229,7 +229,7 @@ const Detail = styled(motion.div)`
   background-color: #fff;
   position: absolute;
   top: 5%;
-  left: 5%;
+  left: 10%;
   color: #000;
   opacity: 1 !important;
   img {
@@ -237,6 +237,7 @@ const Detail = styled(motion.div)`
   }
   @media (max-width: 767px) {
     width: 90%;
+    left: 5%;
     padding: 1rem;
   }
 `;
